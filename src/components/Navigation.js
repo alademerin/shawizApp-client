@@ -4,10 +4,15 @@ import HomeScreen from "../screens/HomeScreen/HomeScreen";
 const Stack = createNativeStackNavigator();
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import ItemScreen from "../screens/ItemScreen/ItemScreen";
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name="HomeScreen" component={MainTabScren} />
     </Stack.Navigator>
   );
@@ -23,7 +28,7 @@ const MainTabScren = () => {
           let iconName;
 
           if (route.name === "Home") {
-            iconName = focused ? "home" : "ios-information-circle-outline";
+            iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Settings") {
             iconName = focused ? "ios-list" : "ios-list-outline";
           }
@@ -36,6 +41,7 @@ const MainTabScren = () => {
       })}
     >
       <Tab.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
+      <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} />
     </Tab.Navigator>
   );
 };
