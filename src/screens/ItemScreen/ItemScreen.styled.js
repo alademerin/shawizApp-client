@@ -39,13 +39,12 @@ export const ItemNameContainer = styled.View`
   bottom: 0;
   width: 100%;
   height: 80px;
-  align-items: center;
   justify-content: center;
 `;
 export const ItemName = styled.Text`
-  text-align: center;
   font-weight: bold;
   font-size: 20px;
   color: white;
-  opacity: 0.6;
+  opacity: 0.7;
+  margin-horizontal: 20px;
 `;
