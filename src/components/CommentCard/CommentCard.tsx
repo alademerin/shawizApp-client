@@ -13,7 +13,11 @@ import {
 import Ratings from "../Ratings/Ratings";
 import StarRating from "../Ratings/Ratings";
 
-const CommentCard = () => {
+interface Props{
+  stars: number
+}
+
+const CommentCard = ({stars}:Props) => {
   return (
     <Container>
       <ImageContainer>
@@ -23,7 +27,7 @@ const CommentCard = () => {
       <CommentDetails>
         <Name>Ricardo</Name>
         <RatingsAndDateContainer>
-          <StarRating stars={2} />
+          <StarRating stars={stars} />
           <Date>Sep 28, 2019</Date>
         </RatingsAndDateContainer>
         <Comment>

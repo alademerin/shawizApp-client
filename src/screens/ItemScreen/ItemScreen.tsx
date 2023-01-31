@@ -52,14 +52,14 @@ const ItemScreen = () => {
           </View>
 
           <SubHeader text="Comments" />
-          <CommentCard />
-          <CommentCard />
-          <CommentCard />
+          <CommentCard stars={3}/>
+          <CommentCard stars={5}/>
+          <CommentCard stars={2}/>
         </Container>
       </ScrollView>
-        <ItemOrderButtonContainer>
-          <OrderButton />
-        </ItemOrderButtonContainer>
+      <ItemOrderButtonContainer>
+        <OrderButton />
+      </ItemOrderButtonContainer>
     </View>
   );
 };
