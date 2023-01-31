@@ -42,7 +42,40 @@ export const Price = styled.Text`
 export const CounterContainer = styled.View`
   border-width: 1px;
   height: 50px;
-  width: 100px;
+  width: 130px;
   border-radius: 50px;
-  border-color: white
+  border-color: white;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-horizontal: 10px;
+  /* align-content: center; */
+`;
+
+export const IconContainer = styled.View`
+  /* background: red; */
+  height: 100%;
+  /* width: 50px; */
+  justify-content: center;
+  align-items: center;
+`;
+
+export const QuantityButtonContainer = styled.View`
+  margin-left: 40px;
+  flex-direction: row;
+`;
+
+export const QuantityText = styled.Text`
+  color: white;
+  font-size: 25px;
+  margin-top: 8px;
+`;
+
+export const BasketButtonContainer = styled.View`
+  background: white;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
 `;

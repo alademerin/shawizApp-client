@@ -1,13 +1,17 @@
 import { View, Text } from "react-native";
 import React from "react";
 import {
+  BasketButtonContainer,
   CounterContainer,
   FavButtonContainer,
+  IconContainer,
   OrderButtonContainer,
   Price,
   PriceContainer,
+  QuantityButtonContainer,
+  QuantityText,
 } from "./Buttons.styled";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 export const FavouriteButton = () => {
   return (
@@ -18,7 +22,17 @@ export const FavouriteButton = () => {
 };
 
 const QuantityCounter = () => {
-  return <CounterContainer></CounterContainer>;
+  return (
+    <CounterContainer>
+      <IconContainer>
+        <AntDesign name="minus" size={20} color="white" />
+      </IconContainer>
+      <QuantityText>1</QuantityText>
+      <IconContainer>
+        <AntDesign name="plus" size={20} color="white" />
+      </IconContainer>
+    </CounterContainer>
+  );
 };
 export const OrderButton = () => {
   return (
@@ -26,7 +40,13 @@ export const OrderButton = () => {
       <PriceContainer>
         <Price>₦1500</Price>
       </PriceContainer>
-      <CounterContainer />
+
+      <QuantityButtonContainer>
+      <QuantityCounter />
+      <BasketButtonContainer>
+        <Ionicons name="basket" size={35} color="#F66B01" />
+      </BasketButtonContainer>
+      </QuantityButtonContainer>
     </OrderButtonContainer>
   );
 };
