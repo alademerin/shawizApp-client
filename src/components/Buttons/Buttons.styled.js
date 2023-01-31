@@ -21,9 +21,10 @@ export const OrderButtonContainer = styled.View`
   background: rgb(246, 107, 1);
   bottom: 0;
   margin-horizontal: 10px;
-  height: 70px;
+  height: 60px;
   border-radius: 50px;
   align-items: center;
+  /* justify-content: center; */
 `;
 export const PriceContainer = styled.View`
   bakground: red;
@@ -41,13 +42,14 @@ export const Price = styled.Text`
 
 export const CounterContainer = styled.View`
   border-width: 1px;
-  height: 50px;
+  height: 40px;
   width: 130px;
   border-radius: 50px;
   border-color: white;
   flex-direction: row;
   justify-content: space-between;
   padding-horizontal: 10px;
+  margin-top: 5px;
   /* align-content: center; */
 `;
 
@@ -67,7 +69,7 @@ export const QuantityButtonContainer = styled.View`
 export const QuantityText = styled.Text`
   color: white;
   font-size: 25px;
-  margin-top: 8px;
+  margin-top: 5px;
 `;
 
 export const BasketButtonContainer = styled.View`
