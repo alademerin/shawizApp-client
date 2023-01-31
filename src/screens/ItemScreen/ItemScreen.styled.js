@@ -48,3 +48,8 @@ export const ItemName = styled.Text`
   opacity: 0.7;
   margin-horizontal: 20px;
 `;
+
+export const ItemOrderButtonContainer = styled.View`
+  position: fixed;
+  bottom: 4px;
+`;

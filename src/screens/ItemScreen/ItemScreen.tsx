@@ -8,6 +8,7 @@ import {
   ItemImage,
   ItemName,
   ItemNameContainer,
+  ItemOrderButtonContainer,
   ItemPageText,
 } from "./ItemScreen.styled";
 import Title from "../../components/Title/Title";
@@ -20,7 +21,7 @@ import { FavouriteButton, OrderButton } from "../../components/Buttons/Buttons";
 function doSomething() {}
 const ItemScreen = () => {
   return (
-    <View>
+    <View style={{ position: "relative", flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Container>
           <ImageContainer>
@@ -55,8 +56,10 @@ const ItemScreen = () => {
           <CommentCard />
           <CommentCard />
         </Container>
-        <OrderButton />
       </ScrollView>
+        <ItemOrderButtonContainer>
+          <OrderButton />
+        </ItemOrderButtonContainer>
     </View>
   );
 };
