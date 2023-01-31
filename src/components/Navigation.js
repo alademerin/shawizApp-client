@@ -5,6 +5,8 @@ const Stack = createNativeStackNavigator();
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemScreen from "../screens/ItemScreen/ItemScreen";
+import OrderScreen from "../screens/OrderScreen/OrderScreen";
+import BasketScreen from "../screens/BasketScreen/BasketScreen";
 
 const HomeStack = () => {
   return (
@@ -29,19 +31,21 @@ const MainTabScren = () => {
 
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "Settings") {
-            iconName = focused ? "ios-list" : "ios-list-outline";
+          } else if (route.name === "Basket") {
+            iconName = focused ? "basket" : "basket-outline";
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={30} color={color} />;
         },
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: "#421b39",
+        tabBarInactiveTintColor: "#421b39",
+        tabBarShowLabel: false,
       })}
     >
       <Tab.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
-      <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} />
+      {/* <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} /> */}
+      <Tab.Screen options={{ headerShown: false }} name="Basket" component={BasketScreen} />
     </Tab.Navigator>
   );
 };
