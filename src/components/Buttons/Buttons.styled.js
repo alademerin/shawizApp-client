@@ -81,3 +81,28 @@ export const BasketButtonContainer = styled.View`
   justify-content: center;
   margin-left: 10px;
 `;
+
+export const IncrementDecrementBtnContainer = styled.View`
+  background: #421b39;
+  opacity: 0.5;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-right: 10px;
+  /* border-width: 6px; */
+  /* border-color: #000; */
+`;
+export const QuantityAndPriceContainer = styled.View`
+  flex-direction: row;
+  margin-top: 17px;
+  align-items: center;
+  justify-content: state-between;
+  /* background: orange; */
+`;
+export const QuantityContainer = styled.View`
+  margin-left: 50px;
+  align-items: center;
+  flex-direction: row;
+`;

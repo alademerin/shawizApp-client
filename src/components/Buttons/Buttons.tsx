@@ -5,6 +5,7 @@ import {
   CounterContainer,
   FavButtonContainer,
   IconContainer,
+  IncrementDecrementBtnContainer,
   OrderButtonContainer,
   Price,
   PriceContainer,
@@ -42,11 +43,19 @@ export const OrderButton = () => {
       </PriceContainer>
 
       <QuantityButtonContainer>
-      <QuantityCounter />
-      <BasketButtonContainer>
-        <Ionicons name="basket" size={35} color="#F66B01" />
-      </BasketButtonContainer>
+        <QuantityCounter />
+        <BasketButtonContainer>
+          <Ionicons name="basket" size={35} color="#F66B01" />
+        </BasketButtonContainer>
       </QuantityButtonContainer>
     </OrderButtonContainer>
+  );
+};
+
+export const PlusMinusButton = () => {
+  return (
+    <IncrementDecrementBtnContainer>
+      <AntDesign name="plus" size={24} color="#fff" />
+    </IncrementDecrementBtnContainer>
   );
 };
