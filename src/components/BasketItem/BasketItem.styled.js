@@ -5,11 +5,14 @@ export const Container = styled.View`
   border-width: 1px;
   border-color: #ddd;
   height: 125px;
-  border-radius: 15px;
-  padding: 10px 20px;
+  border-radius: 5px;
+  padding: 10px 15px;
   margin-bottom: 10px;
 `;
 
+export const BasketImage = styled.Image`
+  border-radius: 5px;
+`;
 export const RowContainer = styled.View`
   flex-direction: row;
 `;

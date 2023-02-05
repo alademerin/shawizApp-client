@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Title from "../../components/Title/Title";
 import BasketItem from "../../components/BasketItem/BasketItem";
 import { OrderNowButton } from "../../components/Buttons/Buttons";
+import { OrderButtonContainer } from "./BasketScreen.styled";
 
 const BasketScreen = () => {
   return (
@@ -13,7 +14,9 @@ const BasketScreen = () => {
         <BasketItem />
         <BasketItem />
         <BasketItem />
-        <OrderNowButton/>
+        <OrderButtonContainer>
+          <OrderNowButton />
+        </OrderButtonContainer>
       </View>
     </SafeAreaView>
   );

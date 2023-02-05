@@ -7,6 +7,7 @@ import {
   FavButtonContainer,
   IconContainer,
   IncrementDecrementBtnContainer,
+  OrderBtnIconContainer,
   OrderNowBtnContainer,
   OrderNowBtnText,
   Price,
@@ -66,6 +67,9 @@ export const OrderNowButton = () => {
   return (
     <OrderNowBtnContainer>
       <OrderNowBtnText>Order Now</OrderNowBtnText>
+      {/* <OrderBtnIconContainer> */}
+      {/*   <Ionicons name="ios-list" size={24} color="black" /> */}
+      {/* </OrderBtnIconContainer> */}
     </OrderNowBtnContainer>
   );
 };

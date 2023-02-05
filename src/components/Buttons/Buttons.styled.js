@@ -114,6 +114,7 @@ export const OrderNowBtnContainer = styled.View`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  flex-direction: row;
   /* position: absolute; */
   /* top;100; */
   /* padding-vertical: 10px; */
@@ -122,4 +123,10 @@ export const OrderNowBtnText = styled.Text`
   color: #fff;
   font-size: 20px;
   font-weight: bold;
+`;
+export const OrderBtnIconContainer = styled.View`
+  background: #fff;
+  border-radius: 5px;
+  padding: 3px;
+  margin-left: 10px;
 `;

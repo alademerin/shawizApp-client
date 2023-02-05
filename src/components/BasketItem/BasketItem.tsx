@@ -1,6 +1,7 @@
 import { View, Image, Text } from "react-native";
 import React from "react";
 import {
+    BasketImage,
   Container,
   DetailsContainer,
   ItemName,
@@ -15,7 +16,7 @@ const BasketItem = () => {
   return (
     <Container>
       <RowContainer>
-        <Image source={{ uri: "https://picsum.photos/200", width: 100, height: 100 }} />
+        <BasketImage source={{ uri: "https://picsum.photos/200", width: 100, height: 100 }} />
         <DetailsContainer>
           <ItemName numberOfLines={2} ellipsizemode="middle">
             Single Sausage Extra Stuffed with Cheese
