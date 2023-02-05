@@ -16,7 +16,8 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import IngredientCard from "../../components/IngredientCard/IngredientCard";
 import CommentCard from "../../components/CommentCard/CommentCard";
 import { ScrollView } from "react-native-gesture-handler";
-import { FavouriteButton, OrderButton } from "../../components/Buttons/Buttons";
+import { AddToBasketButton, FavouriteButton, OrderButton } from "../../components/Buttons/Buttons";
+import { AddtoBasketButtonContainer } from "../../components/Buttons/Buttons.styled";
 
 function doSomething() {}
 const ItemScreen = () => {
@@ -52,14 +53,14 @@ const ItemScreen = () => {
           </View>
 
           <SubHeader text="Comments" />
-          <CommentCard stars={3}/>
-          <CommentCard stars={5}/>
-          <CommentCard stars={2}/>
+          <CommentCard stars={3} />
+          <CommentCard stars={5} />
+          <CommentCard stars={2} />
         </Container>
       </ScrollView>
-      <ItemOrderButtonContainer>
-        <OrderButton />
-      </ItemOrderButtonContainer>
+      <AddtoBasketButtonContainer>
+        <AddToBasketButton />
+      </AddtoBasketButtonContainer>
     </View>
   );
 };
