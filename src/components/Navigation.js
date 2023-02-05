@@ -7,6 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemScreen from "../screens/ItemScreen/ItemScreen";
 import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import BasketScreen from "../screens/BasketScreen/BasketScreen";
+import FavouritesScreen from "../screens/FavouritesScreen/FavouritesScreen";
 
 const HomeStack = () => {
   return (
@@ -16,6 +17,7 @@ const HomeStack = () => {
       }}
     >
       <Stack.Screen name="HomeScreen" component={MainTabScren} />
+      <Stack.Screen name="ItemScreen" component={ItemScreen} />
     </Stack.Navigator>
   );
 };
@@ -33,12 +35,13 @@ const MainTabScren = () => {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Basket") {
             iconName = focused ? "basket" : "basket-outline";
-          } else if (route.name === "Item") {
+          } else if (route.name === "Orders") {
             iconName = "list";
+          } else if (route.name === "Favourites"){
+            iconName = focused? "heart" : "heart-outline"
           }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={30} color={color} />;
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={30} color={color} />;
         },
         tabBarActiveTintColor: "#421b39",
         tabBarInactiveTintColor: "#421b39",
@@ -46,9 +49,10 @@ const MainTabScren = () => {
       })}
     >
       <Tab.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
-      <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} />
+      {/* <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} /> */}
       <Tab.Screen options={{ headerShown: false }} name="Basket" component={BasketScreen} />
       <Tab.Screen options={{ headerShown: false }} name="Orders" component={OrderScreen} />
+      <Tab.Screen options={{ headerShown: false }} name="Favourites" component={FavouritesScreen} />
     </Tab.Navigator>
   );
 };

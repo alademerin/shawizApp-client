@@ -19,9 +19,11 @@ export const FavButtonContainer = styled.View`
 export const AddtoBasketButtonContainer = styled.View`
   flex-direction: row;
   background: rgb(246, 107, 1);
-  bottom: 0;
+  position: absolute;
+  bottom: 15px;
   margin-horizontal: 10px;
   height: 60px;
+  width: 350px;
   border-radius: 50px;
   align-items: center;
   /* justify-content: center; */

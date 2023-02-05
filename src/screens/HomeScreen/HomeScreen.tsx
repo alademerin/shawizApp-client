@@ -9,8 +9,7 @@ import ItemCards from "../../components/ItemCards/ItemCards";
 import DetailedItemCard from "../../components/DetailedItemCard/DetailedItemCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-
-const HomeScreen = () => {
+const HomeScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView>
       <Header />
@@ -18,7 +17,10 @@ const HomeScreen = () => {
       <Title title="Recommended" underline="210px" />
       <ItemCards />
       <Title title="Other Foods" underline="175px" />
-      <DetailedItemCard />
+      <DetailedItemCard
+        itemName="Double Sausages with Cheese"
+        pressed={()=>navigation.navigate("ItemScreen")}
+      />
     </SafeAreaView>
   );
 };
