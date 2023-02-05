@@ -1,12 +1,14 @@
 import { View, Text } from "react-native";
 import React from "react";
 import {
+  AddtoBasketButtonContainer,
   BasketButtonContainer,
   CounterContainer,
   FavButtonContainer,
   IconContainer,
   IncrementDecrementBtnContainer,
-  OrderButtonContainer,
+  OrderNowBtnContainer,
+  OrderNowBtnText,
   Price,
   PriceContainer,
   QuantityButtonContainer,
@@ -35,9 +37,9 @@ const QuantityCounter = () => {
     </CounterContainer>
   );
 };
-export const OrderButton = () => {
+export const AddToBasketButton = () => {
   return (
-    <OrderButtonContainer>
+    <AddtoBasketButtonContainer>
       <PriceContainer>
         <Price>₦1500</Price>
       </PriceContainer>
@@ -48,7 +50,7 @@ export const OrderButton = () => {
           <Ionicons name="basket" size={35} color="#F66B01" />
         </BasketButtonContainer>
       </QuantityButtonContainer>
-    </OrderButtonContainer>
+    </AddtoBasketButtonContainer>
   );
 };
 
@@ -57,5 +59,13 @@ export const PlusMinusButton = () => {
     <IncrementDecrementBtnContainer>
       <AntDesign name="plus" size={24} color="#fff" />
     </IncrementDecrementBtnContainer>
+  );
+};
+
+export const OrderNowButton = () => {
+  return (
+    <OrderNowBtnContainer>
+      <OrderNowBtnText>Order Now</OrderNowBtnText>
+    </OrderNowBtnContainer>
   );
 };

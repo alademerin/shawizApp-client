@@ -16,7 +16,7 @@ export const FavButtonContainer = styled.View`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
-export const OrderButtonContainer = styled.View`
+export const AddtoBasketButtonContainer = styled.View`
   flex-direction: row;
   background: rgb(246, 107, 1);
   bottom: 0;
@@ -90,7 +90,7 @@ export const IncrementDecrementBtnContainer = styled.View`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 5px;
   /* border-width: 6px; */
   /* border-color: #000; */
 `;
@@ -105,4 +105,21 @@ export const QuantityContainer = styled.View`
   margin-left: 50px;
   align-items: center;
   flex-direction: row;
+`;
+
+export const OrderNowBtnContainer = styled.View`
+  background: #421b39;
+  margin-horizontal: 20px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  /* position: absolute; */
+  /* top;100; */
+  /* padding-vertical: 10px; */
+`;
+export const OrderNowBtnText = styled.Text`
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
 `;
