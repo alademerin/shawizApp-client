@@ -5,7 +5,7 @@ const Stack = createNativeStackNavigator();
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemScreen from "../screens/ItemScreen/ItemScreen";
-// import OrderScreen from "../screens/OrderScreen/OrderScreen";
+import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import BasketScreen from "../screens/BasketScreen/BasketScreen";
 
 const HomeStack = () => {
@@ -48,6 +48,7 @@ const MainTabScren = () => {
       <Tab.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
       <Tab.Screen options={{ headerShown: false }} name="Item" component={ItemScreen} />
       <Tab.Screen options={{ headerShown: false }} name="Basket" component={BasketScreen} />
+      <Tab.Screen options={{ headerShown: false }} name="Orders" component={OrderScreen} />
     </Tab.Navigator>
   );
 };
