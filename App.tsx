@@ -5,17 +5,25 @@ import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeStack from "./src/components/Navigation";
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from "@apollo/client";
+import { store } from "./src/store/store.js";
+import { Provider, useSelector } from "react-redux";
+import AppContainer from "./src/screens/AppContainer";
 
 const Stack = createNativeStackNavigator();
 
+const client = new ApolloClient({
+  uri: "http://172.20.10.3:5000/graphql",
+  cache: new InMemoryCache(),
+});
+
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <NavigationContainer>
-        <HomeStack />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <AppContainer />
+      </ApolloProvider>
+    </Provider>
   );
 }
 

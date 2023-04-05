@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.View`
   margin-horizontal: 20px;
   flex-direction: row;
+  margin-bottom: 10px;
 `;
 
 export const ItemImage = styled.Image`

@@ -132,3 +132,19 @@ export const OrderBtnIconContainer = styled.View`
   padding: 3px;
   margin-left: 10px;
 `;
+
+export const AuthButtonContainer = styled.View`
+  background: #421b39;
+  margin-horizontal: 20px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+`;
+
+export const AuthButtonText = styled.Text`
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+`;
+

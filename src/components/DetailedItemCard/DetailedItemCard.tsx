@@ -13,14 +13,16 @@ import TouchableScale from "react-native-touchable-scale";
 
 interface Props {
   itemName: string;
+  image: string;
+  price: string;
 }
 
-const DetailedItemCard = ({ pressed, itemName }: props) => {
+const DetailedItemCard = ({ price, pressed, itemName, image }: props) => {
   return (
-    <TouchableScale onPress={pressed}>
+    <TouchableScale onPress={pressed} activeScale={0.95}>
       <Container>
         <View>
-          <ItemImage source={{ uri: "https://picsum.photos/200" }} />
+          <ItemImage source={{ uri: image }} />
         </View>
         <View>
           <DetailsContainer>
@@ -28,7 +30,7 @@ const DetailedItemCard = ({ pressed, itemName }: props) => {
             <ItemName numberOfLines={2} ellipsizeMode="tail">
               {itemName}
             </ItemName>
-            <Price>₦1000</Price>
+            <Price>₦{price}</Price>
           </DetailsContainer>
           <PriceContainer></PriceContainer>
         </View>

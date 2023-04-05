@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
 import {
   Blur,
   Container,
@@ -20,7 +20,31 @@ import { AddToBasketButton, FavouriteButton, OrderButton } from "../../component
 import { AddtoBasketButtonContainer } from "../../components/Buttons/Buttons.styled";
 
 const ItemScreen = ({ route }) => {
-  // const { itemName } = route.params;
+  const { id, image, description, name, price } = route.params;
+
+  const addToBasket = () => {
+    alert(id);
+  };
+
+  const [quantity, setQuantity] = useState(1);
+  const [itemPrice, setItemPrice] = useState(price);
+
+  const incrementCount = () => {
+    setQuantity((prevQuantity) => {
+      setItemPrice(price * (prevQuantity + 1));
+      return prevQuantity + 1;
+    });
+  };
+
+  const decrementCount = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => {
+        setItemPrice(price * (prevQuantity - 1));
+        return prevQuantity - 1;
+      });
+    }
+  };
+
   return (
     <View style={{ position: "relative", flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -28,22 +52,19 @@ const ItemScreen = ({ route }) => {
           <ImageContainer>
             <ItemImage
               source={{
-                uri: "https://media.istockphoto.com/id/1286288597/photo/gyros-grilled-meat-slices-in-a-pita-bread-closeup-view.jpg?s=612x612&w=0&k=20&c=60mXtLpGp1rX2b_49oGlJ1v1UaLtS1PQTBnqD6iBc1M=",
+                uri: image,
               }}
             />
 
             <Blur intensity={20} tint="dark" />
             <Gradient colors={["transparent", "rgba(0, 0, 0, 1)"]} />
             <ItemNameContainer>
-              <ItemName>Double Sausages with Cheese</ItemName>
+              <ItemName>{name}</ItemName>
             </ItemNameContainer>
             <FavouriteButton />
           </ImageContainer>
           <SubHeader text="About" />
-          <ItemPageText>
-            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-            consectetur cupidatat.
-          </ItemPageText>
+          <ItemPageText>{description}</ItemPageText>
           <SubHeader text="Ingredients" />
           <View style={{ flexDirection: "row", marginHorizontal: 20 }}>
             <IngredientCard />
@@ -59,7 +80,13 @@ const ItemScreen = ({ route }) => {
         </Container>
       </ScrollView>
       {/* <AddtoBasketButtonContainer> */}
-      <AddToBasketButton />
+      <AddToBasketButton
+        price={itemPrice}
+        quantity={quantity}
+        addToBasketPressed={addToBasket}
+        plusPressed={incrementCount}
+        minusPressed={decrementCount}
+      />
       {/* </AddtoBasketButtonContainer> */}
     </View>
   );

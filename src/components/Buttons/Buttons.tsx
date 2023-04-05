@@ -1,7 +1,9 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   AddtoBasketButtonContainer,
+  AuthButtonContainer,
+  AuthButtonText,
   BasketButtonContainer,
   CounterContainer,
   FavButtonContainer,
@@ -16,40 +18,50 @@ import {
   QuantityText,
 } from "./Buttons.styled";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import TouchableScale from "react-native-touchable-scale";
 
 export const FavouriteButton = () => {
+  const [selected, setSelected] = useState(false);
   return (
-    <FavButtonContainer>
-      <AntDesign name="heart" size={24} color="white" />
-    </FavButtonContainer>
+    <TouchableScale onPress={() => setSelected(!selected)}>
+      <FavButtonContainer>
+        <AntDesign name="heart" size={24} color={selected ? "red" : "white"} />
+      </FavButtonContainer>
+    </TouchableScale>
   );
 };
 
-const QuantityCounter = () => {
+const QuantityCounter = ({quantity, minusPressed, plusPressed}) => {
   return (
     <CounterContainer>
+      <TouchableScale onPress={minusPressed}>
       <IconContainer>
         <AntDesign name="minus" size={20} color="white" />
       </IconContainer>
-      <QuantityText>1</QuantityText>
+      </TouchableScale>
+      <QuantityText>{ quantity }</QuantityText>
+      <TouchableScale onPress={plusPressed}>
       <IconContainer>
         <AntDesign name="plus" size={20} color="white" />
       </IconContainer>
+      </TouchableScale>
     </CounterContainer>
   );
 };
-export const AddToBasketButton = () => {
+export const AddToBasketButton = ({ price, addToBasketPressed, quantity, minusPressed, plusPressed}) => {
   return (
     <AddtoBasketButtonContainer>
       <PriceContainer>
-        <Price>₦1500</Price>
+        <Price>₦{price}</Price>
       </PriceContainer>
 
       <QuantityButtonContainer>
-        <QuantityCounter />
-        <BasketButtonContainer>
-          <Ionicons name="basket" size={35} color="#F66B01" />
-        </BasketButtonContainer>
+        <QuantityCounter quantity={quantity} minusPressed={minusPressed} plusPressed={plusPressed} />
+        <TouchableScale onPress={addToBasketPressed}>
+          <BasketButtonContainer>
+            <Ionicons name="basket" size={35} color="#F66B01" />
+          </BasketButtonContainer>
+        </TouchableScale>
       </QuantityButtonContainer>
     </AddtoBasketButtonContainer>
   );
@@ -71,5 +83,15 @@ export const OrderNowButton = () => {
       {/*   <Ionicons name="ios-list" size={24} color="black" /> */}
       {/* </OrderBtnIconContainer> */}
     </OrderNowBtnContainer>
+  );
+};
+
+export const AuthButton = ({ title, authPressed }) => {
+  return (
+    <TouchableScale activeScale={0.95} onPress={authPressed}>
+      <AuthButtonContainer>
+        <AuthButtonText>{title}</AuthButtonText>
+      </AuthButtonContainer>
+    </TouchableScale>
   );
 };

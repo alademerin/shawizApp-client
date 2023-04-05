@@ -8,16 +8,32 @@ import ItemScreen from "../screens/ItemScreen/ItemScreen";
 import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import BasketScreen from "../screens/BasketScreen/BasketScreen";
 import FavouritesScreen from "../screens/FavouritesScreen/FavouritesScreen";
+import LoginScreen from "../screens/LoginScreen/LoginScreen";
+
 
 const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        keyboardDissmissMode: "on-drag",
       }}
     >
       <Stack.Screen name="HomeScreen" component={MainTabScren} />
       <Stack.Screen name="ItemScreen" component={ItemScreen} />
+    </Stack.Navigator>
+  );
+};
+
+export const AuthStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        keyboardDissmissMode: "on-drag",
+      }}
+    >
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
     </Stack.Navigator>
   );
 };
@@ -37,11 +53,11 @@ const MainTabScren = () => {
             iconName = focused ? "basket" : "basket-outline";
           } else if (route.name === "Orders") {
             iconName = "list";
-          } else if (route.name === "Favourites"){
-            iconName = focused? "heart" : "heart-outline"
+          } else if (route.name === "Favourites") {
+            iconName = focused ? "heart" : "heart-outline";
           }
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={30} color={color} />;
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={30} color={color} />;
         },
         tabBarActiveTintColor: "#421b39",
         tabBarInactiveTintColor: "#421b39",
@@ -53,6 +69,7 @@ const MainTabScren = () => {
       <Tab.Screen options={{ headerShown: false }} name="Basket" component={BasketScreen} />
       <Tab.Screen options={{ headerShown: false }} name="Orders" component={OrderScreen} />
       <Tab.Screen options={{ headerShown: false }} name="Favourites" component={FavouritesScreen} />
+      {/* <Tab.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} /> */}
     </Tab.Navigator>
   );
 };
