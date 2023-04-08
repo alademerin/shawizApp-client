@@ -18,12 +18,27 @@ import CommentCard from "../../components/CommentCard/CommentCard";
 import { ScrollView } from "react-native-gesture-handler";
 import { AddToBasketButton, FavouriteButton, OrderButton } from "../../components/Buttons/Buttons";
 import { AddtoBasketButtonContainer } from "../../components/Buttons/Buttons.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { basketActions } from "../../store/slices/basketSlice";
+import Toast from "react-native-toast-message";
 
 const ItemScreen = ({ route }) => {
+  const basketItems = useSelector((state) => state.basket.items);
+  const userId = useSelector((state) => state.auth.user.id);
+
+  console.log(userId);
+  const dispatch = useDispatch();
+  // console.log(basketItems);
   const { id, image, description, name, price } = route.params;
 
   const addToBasket = () => {
-    alert(id);
+    dispatch(basketActions.addToBasket({ id, name, image, price, quantity }));
+    Toast.show({
+      type: "success",
+      position: "bottom",
+      text1: "Added to basket",
+      text2: "Item successfully added to basket",
+    });
   };
 
   const [quantity, setQuantity] = useState(1);

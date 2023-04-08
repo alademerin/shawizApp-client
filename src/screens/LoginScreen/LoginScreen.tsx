@@ -12,6 +12,7 @@ import { useLazyQuery, gql } from "@apollo/client";
 import * as SecureStore from "expo-secure-store";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/slices/authSclice";
+import Toast from "react-native-toast-message";
 
 const save = async (key, value) => {
   await SecureStore.setItemAsync(key, value);
@@ -49,7 +50,15 @@ const LoginScreen = () => {
       }
       dispatch(authActions.login({ user, token }));
     },
-    onError: () => alert(error),
+    onError: () => {
+      console.log(error.title);
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Login Error",
+        text2: error.message,
+      });
+    },
   });
   const loginUser = () => {
     getUser({ variables: { userName, password } });
@@ -73,8 +82,17 @@ const LoginScreen = () => {
               </View>
               <Container>
                 <Text>Let's get you signed into your account.</Text>
-                <TextInput label="Username" placeholder="username or email" onChangeText={text=>setUserName(text)} />
-                <TextInput label="Password" password={true} placeholder="password" onChangeText={text=>setPassword(text)}/>
+                <TextInput
+                  label="Username"
+                  placeholder="username or email"
+                  onChangeText={(text) => setUserName(text)}
+                />
+                <TextInput
+                  label="Password"
+                  password={true}
+                  placeholder="password"
+                  onChangeText={(text) => setPassword(text)}
+                />
               </Container>
             </View>
           </ScrollView>

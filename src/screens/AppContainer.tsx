@@ -12,7 +12,7 @@ export default function AppContainer() {
     <SafeAreaProvider>
       <StatusBar style="auto" />
       <NavigationContainer>
-        {isLoggedIn? <HomeStack />: <AuthStack/> }
+        {isLoggedIn ? <HomeStack /> : <AuthStack />}
       </NavigationContainer>
     </SafeAreaProvider>
   );

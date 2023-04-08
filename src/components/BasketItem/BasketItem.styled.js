@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.View`
   margin-horizontal: 20px;
-  border-width: 1px;
+  border-bottom-width: 1px;
   border-color: #ddd;
-  height: 125px;
+  /* height: 125px; */
   border-radius: 5px;
-  padding: 10px 15px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
+  /* background: red; */
 `;
 
 export const BasketImage = styled.Image`
@@ -30,13 +31,13 @@ export const ItemName = styled.Text`
 `;
 
 export const Price = styled.Text`
-  font-size: 25px;
+  font-size: 20px;
   color: #421b39;
   font-weight: bold;
   margin-left: 10px;
 `;
 export const Quantity = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   color: #421b39;
   font-weight: bold;
   margin-right: 10px;

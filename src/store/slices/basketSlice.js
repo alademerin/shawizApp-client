@@ -9,8 +9,8 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, actions) => {
-      const basketItem = actions.payload;
-      state.items.push(basketItem);
+      const newItem = actions.payload;
+      state.items.push(newItem);
     },
   },
 });

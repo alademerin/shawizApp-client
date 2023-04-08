@@ -9,6 +9,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, gql } from "@apollo/client
 import { store } from "./src/store/store.js";
 import { Provider, useSelector } from "react-redux";
 import AppContainer from "./src/screens/AppContainer";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
       <ApolloProvider client={client}>
         <AppContainer />
       </ApolloProvider>
+      <Toast/>
     </Provider>
   );
 }

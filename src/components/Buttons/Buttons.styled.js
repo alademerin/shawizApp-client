@@ -87,8 +87,8 @@ export const BasketButtonContainer = styled.View`
 export const IncrementDecrementBtnContainer = styled.View`
   background: #421b39;
   opacity: 0.5;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
@@ -104,9 +104,10 @@ export const QuantityAndPriceContainer = styled.View`
   /* background: orange; */
 `;
 export const QuantityContainer = styled.View`
-  margin-left: 50px;
+  margin-left: 70px;
   align-items: center;
   flex-direction: row;
+  /* justif-self: flex-end; */
 `;
 
 export const OrderNowBtnContainer = styled.View`
@@ -118,7 +119,8 @@ export const OrderNowBtnContainer = styled.View`
   border-radius: 5px;
   flex-direction: row;
   /* position: absolute; */
-  /* top;100; */
+  /* width:100% */
+  /* /* top;100; */ */
   /* padding-vertical: 10px; */
 `;
 export const OrderNowBtnText = styled.Text`
@@ -147,4 +149,3 @@ export const AuthButtonText = styled.Text`
   font-size: 20px;
   font-weight: bold;
 `;
-

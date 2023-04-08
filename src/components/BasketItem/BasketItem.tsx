@@ -1,7 +1,7 @@
 import { View, Image, Text } from "react-native";
 import React from "react";
 import {
-    BasketImage,
+  BasketImage,
   Container,
   DetailsContainer,
   ItemName,
@@ -12,20 +12,27 @@ import {
 import { PlusMinusButton } from "../Buttons/Buttons";
 import { QuantityAndPriceContainer, QuantityContainer } from "../Buttons/Buttons.styled";
 
-const BasketItem = () => {
+interface Props {
+  name: String;
+  price: Number;
+  quantity: Number;
+  image: String;
+}
+
+const BasketItem = ({ name, price, quantity, image }: Props) => {
   return (
     <Container>
       <RowContainer>
-        <BasketImage source={{ uri: "https://picsum.photos/200", width: 100, height: 100 }} />
+        <BasketImage source={{ uri: image, width: 100, height: 100 }} />
         <DetailsContainer>
           <ItemName numberOfLines={2} ellipsizemode="middle">
-            Single Sausage Extra Stuffed with Cheese
+            {name}
           </ItemName>
           <QuantityAndPriceContainer>
-            <Price>₦10</Price>
+            <Price>₦{price}</Price>
             <QuantityContainer>
               <PlusMinusButton />
-              <Quantity>1</Quantity>
+              <Quantity>{quantity}</Quantity>
               <PlusMinusButton />
             </QuantityContainer>
           </QuantityAndPriceContainer>
