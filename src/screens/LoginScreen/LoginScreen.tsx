@@ -43,8 +43,8 @@ const LoginScreen = () => {
       const token = data.login.token;
       const user = data.login.user;
       try {
-        await save("token", token);
-        await save("user", user);
+        await save("token", JSON.stringify(token));
+        await save("user", JSON.stringify(user));
       } catch (err) {
         console.log(err);
       }

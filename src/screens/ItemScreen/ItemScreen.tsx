@@ -21,24 +21,34 @@ import { AddtoBasketButtonContainer } from "../../components/Buttons/Buttons.sty
 import { useDispatch, useSelector } from "react-redux";
 import { basketActions } from "../../store/slices/basketSlice";
 import Toast from "react-native-toast-message";
+import * as SecureStore from "expo-secure-store";
+import { save } from "../../helperMethods";
 
 const ItemScreen = ({ route }) => {
   const basketItems = useSelector((state) => state.basket.items);
   const userId = useSelector((state) => state.auth.user.id);
 
-  console.log(userId);
   const dispatch = useDispatch();
   // console.log(basketItems);
   const { id, image, description, name, price } = route.params;
 
-  const addToBasket = () => {
-    dispatch(basketActions.addToBasket({ id, name, image, price, quantity }));
-    Toast.show({
-      type: "success",
-      position: "bottom",
-      text1: "Added to basket",
-      text2: "Item successfully added to basket",
-    });
+  const addToBasket = async () => {
+    // await SecureStore.deleteItemAsync("basket");
+    let basketObject = await SecureStore.getItemAsync("basket");
+    const newBasketItem = { id, image, name, price, total: price * quantity, quantity };
+    if (basketObject) {
+      basketObject = JSON.parse(basketObject);
+      const existingItemIndex = basketObject.findIndex((item) => item.id === id);
+      if (existingItemIndex > -1) {
+        basketObject[existingItemIndex].quantity += quantity;
+      } else {
+        basketObject.push(newBasketItem);
+      }
+    } else {
+      basketObject = [newBasketItem];
+    }
+    await SecureStore.setItemAsync("basket", JSON.stringify(basketObject));
+    dispatch(basketActions.addToBasket(newBasketItem));
   };
 
   const [quantity, setQuantity] = useState(1);
