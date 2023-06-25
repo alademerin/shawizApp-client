@@ -18,15 +18,14 @@ const BasketItems = () => {
   };
 
   useEffect(() => {
-    alert(total);
-    fetchData();
+    console.log(fetchData());
   }, []);
   return (
     <View>
-      {basketItems.map(({ id, image, name, price, quantity, total }, i) => (
+      {basketItems?.map(({ id, image, name, price, quantity, total }, i) => (
         <BasketItem key={i} name={name} image={image} price={total} quantity={quantity} />
       ))}
-      <Text>total:{total}</Text>
+      {/* <Text>total:{total}</Text> */}
     </View>
   );
 };

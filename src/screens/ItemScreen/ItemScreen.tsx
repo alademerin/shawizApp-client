@@ -17,12 +17,9 @@ import IngredientCard from "../../components/IngredientCard/IngredientCard";
 import CommentCard from "../../components/CommentCard/CommentCard";
 import { ScrollView } from "react-native-gesture-handler";
 import { AddToBasketButton, FavouriteButton, OrderButton } from "../../components/Buttons/Buttons";
-import { AddtoBasketButtonContainer } from "../../components/Buttons/Buttons.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { basketActions } from "../../store/slices/basketSlice";
 import Toast from "react-native-toast-message";
-import * as SecureStore from "expo-secure-store";
-import { save } from "../../helperMethods";
+import { addToBasketItems } from "../../store/slices/basketSlice";
 
 const ItemScreen = ({ route }) => {
   const basketItems = useSelector((state) => state.basket.items);
@@ -33,22 +30,13 @@ const ItemScreen = ({ route }) => {
   const { id, image, description, name, price } = route.params;
 
   const addToBasket = async () => {
-    // await SecureStore.deleteItemAsync("basket");
-    let basketObject = await SecureStore.getItemAsync("basket");
-    const newBasketItem = { id, image, name, price, total: price * quantity, quantity };
-    if (basketObject) {
-      basketObject = JSON.parse(basketObject);
-      const existingItemIndex = basketObject.findIndex((item) => item.id === id);
-      if (existingItemIndex > -1) {
-        basketObject[existingItemIndex].quantity += quantity;
-      } else {
-        basketObject.push(newBasketItem);
-      }
-    } else {
-      basketObject = [newBasketItem];
-    }
-    await SecureStore.setItemAsync("basket", JSON.stringify(basketObject));
-    dispatch(basketActions.addToBasket(newBasketItem));
+    dispatch(addToBasketItems({ id, image, name, price, total: price * quantity, quantity }));
+    Toast.show({
+      type: "success",
+      text1: "Item Successfully added to basket",
+      text2: "Please proceed to the basket page to place your order",
+position:'bottom'
+    });
   };
 
   const [quantity, setQuantity] = useState(1);
