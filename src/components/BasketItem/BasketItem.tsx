@@ -29,12 +29,12 @@ const BasketItem = ({ name, price, quantity, image, incrementQty, decrementQty }
             {name}
           </ItemName>
           <QuantityAndPriceContainer>
-            <Price>₦{price}</Price>
             <QuantityContainer>
               <PlusMinusButton icon="minus" plusMinusPressed={decrementQty} />
               <Quantity>{quantity}</Quantity>
               <PlusMinusButton icon="plus" plusMinusPressed={incrementQty} />
             </QuantityContainer>
+            <Price>₦{price}</Price>
           </QuantityAndPriceContainer>
         </DetailsContainer>
       </RowContainer>

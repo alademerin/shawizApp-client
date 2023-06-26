@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import BasketItem from "../BasketItem/BasketItem";
+// import BasketItem from "../BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import { basketActions } from "../../store/slices/basketSlice";
 import { getBasketItems } from "../../store/slices/basketSlice.js";
@@ -13,7 +13,7 @@ const BasketItems = () => {
 
   const fetchData = async () => {
     try {
-      return dispatch(getBasketItems());
+      return await dispatch(getBasketItems());
     } catch (e) {
       alert(e);
     }
@@ -54,3 +54,4 @@ const BasketItems = () => {
 export default BasketItems;
 
 const styles = StyleSheet.create({});
+const BasketItem = React.lazy(() => import("../BasketItem/BasketItem"));

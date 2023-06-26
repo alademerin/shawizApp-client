@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as SecureStore from "expo-secure-store";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
-import BasketItems from "../../components/BasketItems/BasketItems";
 
 const initialState = {
   items: [],
@@ -10,14 +8,17 @@ const initialState = {
   error: null,
 };
 
-export const getBasketItems = createAsyncThunk("basket/getBasketItems", async () => {
-  try {
-    const basketItems = await SecureStore.getItemAsync("basket");
-    return basketItems;
-  } catch (e) {
-    alert(e.messagge);
+export const getBasketItems = createAsyncThunk(
+  "basket/getBasketItems",
+  async (_, { rejectWithValue }) => {
+    try {
+      const basketItems = await SecureStore.getItemAsync("basket");
+      return basketItems;
+    } catch (e) {
+      rejectWithValue(e.messagge);
+    }
   }
-});
+);
 
 export const addToBasketItems = createAsyncThunk(
   "basket/addToBasket",
@@ -70,7 +71,7 @@ const basketSlice = createSlice({
       .addCase(getBasketItems.fulfilled, (state, action) => {
         state.loading = false;
         state.items = JSON.parse(action.payload);
-        state.total = state.items.reduce((total, item) => total + item.total, 0) || 0;
+        state.total = state.items?.reduce((total, item) => total + item.total, 0) || 0;
         console.log(state.items);
       })
       .addCase(getBasketItems.rejected, (state, action) => {
@@ -80,7 +81,7 @@ const basketSlice = createSlice({
       })
       .addCase(addToBasketItems.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.total = state.items.reduce((total, item) => total + item.total, 0);
+        state.total = state.items?.reduce((total, item) => total + item.total, 0);
       });
   },
 });

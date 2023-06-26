@@ -33,13 +33,14 @@ export const ItemName = styled.Text`
 
 export const Price = styled.Text`
   font-size: 20px;
-  /* color: #421b39; */
+  color: #b1b1b1;
   font-weight: bold;
   margin-left: 10px;
+  margin-top: 10px;
 `;
 export const Quantity = styled.Text`
   font-size: 20px;
-  color: #421b39;
+  /* color: #b1b1b1; */
   font-weight: bold;
   margin-right: 10px;
 `;
