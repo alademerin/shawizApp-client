@@ -24,7 +24,7 @@ import { nanoid } from "nanoid/non-secure";
 
 const ItemScreen = ({ route }) => {
   const userId = useSelector((state) => state.auth.user.id);
-  const basketIdx = nanoid();
+  const basketIdx =  Date.now()
 
   const dispatch = useDispatch();
   const { id, image, description, name, price } = route.params;
