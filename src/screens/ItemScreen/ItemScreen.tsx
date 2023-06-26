@@ -20,22 +20,24 @@ import { AddToBasketButton, FavouriteButton, OrderButton } from "../../component
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "react-native-toast-message";
 import { addToBasketItems } from "../../store/slices/basketSlice";
+import { nanoid } from "nanoid/non-secure";
 
 const ItemScreen = ({ route }) => {
-  const basketItems = useSelector((state) => state.basket.items);
   const userId = useSelector((state) => state.auth.user.id);
+  const basketIdx = nanoid();
 
   const dispatch = useDispatch();
-  // console.log(basketItems);
   const { id, image, description, name, price } = route.params;
 
   const addToBasket = async () => {
-    dispatch(addToBasketItems({ id, image, name, price, total: price * quantity, quantity }));
+    dispatch(
+      addToBasketItems({ basketIdx, id, image, name, price, total: price * quantity, quantity })
+    );
     Toast.show({
       type: "success",
       text1: "Item Successfully added to basket",
       text2: "Please proceed to the basket page to place your order",
-position:'bottom'
+      position: "bottom",
     });
   };
 

@@ -19,7 +19,7 @@ interface Props {
   image: String;
 }
 
-const BasketItem = ({ name, price, quantity, image }: Props) => {
+const BasketItem = ({ name, price, quantity, image, incrementQty, decrementQty }: Props) => {
   return (
     <Container>
       <RowContainer>
@@ -31,9 +31,9 @@ const BasketItem = ({ name, price, quantity, image }: Props) => {
           <QuantityAndPriceContainer>
             <Price>₦{price}</Price>
             <QuantityContainer>
-              <PlusMinusButton />
+              <PlusMinusButton icon="minus" plusMinusPressed={decrementQty} />
               <Quantity>{quantity}</Quantity>
-              <PlusMinusButton />
+              <PlusMinusButton icon="plus" plusMinusPressed={incrementQty} />
             </QuantityContainer>
           </QuantityAndPriceContainer>
         </DetailsContainer>

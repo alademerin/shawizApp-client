@@ -3,11 +3,19 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Title from "../../components/Title/Title";
 import { OrderNowButton } from "../../components/Buttons/Buttons";
-import { OrderButtonContainer } from "./BasketScreen.styled";
+import { OrderButtonContainer, PriceContainer, PriceText, TotalText } from "./BasketScreen.styled";
 import { ScrollView } from "react-native-gesture-handler";
 import BasketItems from "../../components/BasketItems/BasketItems";
+import { useSelector } from "react-redux";
+import * as SecureStore from "expo-secure-store";
 
 const BasketScreen = () => {
+  const total = useSelector((state) => state.basket.total);
+
+  const orderBtnPressed = async () => {
+    await SecureStore.deleteItemAsync("basket");
+  };
+
   return (
     <SafeAreaView>
       <View style={{ marginTop: 30 }}>
@@ -19,8 +27,12 @@ const BasketScreen = () => {
         >
           <BasketItems />
         </ScrollView>
+        <PriceContainer>
+          <TotalText>Total:</TotalText>
+          <PriceText>₦{total}</PriceText>
+        </PriceContainer>
         <OrderButtonContainer>
-          <OrderNowButton />
+          <OrderNowButton orderBtnPressed={orderBtnPressed} />
         </OrderButtonContainer>
       </View>
     </SafeAreaView>
@@ -29,11 +41,11 @@ const BasketScreen = () => {
 
 const styles = StyleSheet.create({
   scrollview: {
-    height: "92%",
-    // marginBottom: 10,
+    height: "75%",
+    marginBottom: 10,
   },
   scrollContentContainer: {
-    paddingBottom: 100,
+    paddingBottom: 25,
     // height: "92%",
   },
 });

@@ -31,24 +31,30 @@ export const FavouriteButton = () => {
   );
 };
 
-const QuantityCounter = ({quantity, minusPressed, plusPressed}) => {
+const QuantityCounter = ({ quantity, minusPressed, plusPressed }) => {
   return (
     <CounterContainer>
       <TouchableScale onPress={minusPressed}>
-      <IconContainer>
-        <AntDesign name="minus" size={20} color="white" />
-      </IconContainer>
+        <IconContainer>
+          <AntDesign name="minus" size={20} color="white" />
+        </IconContainer>
       </TouchableScale>
-      <QuantityText>{ quantity }</QuantityText>
+      <QuantityText>{quantity}</QuantityText>
       <TouchableScale onPress={plusPressed}>
-      <IconContainer>
-        <AntDesign name="plus" size={20} color="white" />
-      </IconContainer>
+        <IconContainer>
+          <AntDesign name="plus" size={20} color="white" />
+        </IconContainer>
       </TouchableScale>
     </CounterContainer>
   );
 };
-export const AddToBasketButton = ({ price, addToBasketPressed, quantity, minusPressed, plusPressed}) => {
+export const AddToBasketButton = ({
+  price,
+  addToBasketPressed,
+  quantity,
+  minusPressed,
+  plusPressed,
+}) => {
   return (
     <AddtoBasketButtonContainer>
       <PriceContainer>
@@ -56,7 +62,11 @@ export const AddToBasketButton = ({ price, addToBasketPressed, quantity, minusPr
       </PriceContainer>
 
       <QuantityButtonContainer>
-        <QuantityCounter quantity={quantity} minusPressed={minusPressed} plusPressed={plusPressed} />
+        <QuantityCounter
+          quantity={quantity}
+          minusPressed={minusPressed}
+          plusPressed={plusPressed}
+        />
         <TouchableScale onPress={addToBasketPressed}>
           <BasketButtonContainer>
             <Ionicons name="basket" size={35} color="#F66B01" />
@@ -67,22 +77,26 @@ export const AddToBasketButton = ({ price, addToBasketPressed, quantity, minusPr
   );
 };
 
-export const PlusMinusButton = () => {
+export const PlusMinusButton = ({ plusMinusPressed , icon}) => {
   return (
-    <IncrementDecrementBtnContainer>
-      <AntDesign name="plus" size={24} color="#fff" />
-    </IncrementDecrementBtnContainer>
+    <TouchableScale activeScale={0.95} onPress={plusMinusPressed}>
+      <IncrementDecrementBtnContainer>
+        <AntDesign name={icon } size={24} color="#fff" />
+      </IncrementDecrementBtnContainer>
+    </TouchableScale>
   );
 };
 
-export const OrderNowButton = () => {
+export const OrderNowButton = ({ orderBtnPressed }) => {
   return (
-    <OrderNowBtnContainer>
-      <OrderNowBtnText>Order Now</OrderNowBtnText>
-      {/* <OrderBtnIconContainer> */}
-      {/*   <Ionicons name="ios-list" size={24} color="black" /> */}
-      {/* </OrderBtnIconContainer> */}
-    </OrderNowBtnContainer>
+    <TouchableScale onPress={orderBtnPressed} activeScale={0.95}>
+      <OrderNowBtnContainer>
+        <OrderNowBtnText>Order Now</OrderNowBtnText>
+        {/* <OrderBtnIconContainer> */}
+        {/*   <Ionicons name="ios-list" size={24} color="black" /> */}
+        {/* </OrderBtnIconContainer> */}
+      </OrderNowBtnContainer>
+    </TouchableScale>
   );
 };
 

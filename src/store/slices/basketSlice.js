@@ -1,29 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as SecureStore from "expo-secure-store";
+import { withSafeAreaInsets } from "react-native-safe-area-context";
+import BasketItems from "../../components/BasketItems/BasketItems";
 
 const initialState = {
   items: [],
   total: 0,
+  loading: false,
+  error: null,
 };
 
 export const getBasketItems = createAsyncThunk("basket/getBasketItems", async () => {
-  const basketItems = await SecureStore.getItemAsync("basket");
-  return basketItems;
+  try {
+    const basketItems = await SecureStore.getItemAsync("basket");
+    return basketItems;
+  } catch (e) {
+    alert(e.messagge);
+  }
 });
 
 export const addToBasketItems = createAsyncThunk(
   "basket/addToBasket",
   async (item, { rejectWithValue }) => {
     try {
-      // Retrieve the current basket from SecureStore
       const currentBasket = await SecureStore.getItemAsync("basket");
-      // Parse the retrieved basket JSON or initialize an empty array
       const basketItems = currentBasket ? JSON.parse(currentBasket) : [];
-      // Add the new item to the basket
       basketItems.push(item);
-      // Store the updated basket in SecureStore
       await SecureStore.setItemAsync("basket", JSON.stringify(basketItems));
-      // Return the updated basket items
       return basketItems;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -35,25 +38,50 @@ const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    addToBasket: (state, actions) => {
-      const newItem = actions.payload;
-      state.items.push(newItem);
-      state.total = state.items.reduce((total, item) => total + item.total, 0);
+    incrementQuantity: (state, action) => {
+      const basketIdx = action.payload;
+      const item = state.items.find((item) => item.basketIdx === basketIdx);
+      if (item) {
+        item.quantity++;
+        item.total = item.price * item.quantity;
+      }
+      state.total = state.items.reduce((total, item) => total + item.total, 0) || 0;
+
+      SecureStore.setItemAsync("basket", JSON.stringify(state.items));
     },
-    getBasketTotal: (state, action) => {
-      const basketTotal = state.items.reduce((acc, cur) => ((acc.total += cur), total), []);
-      state.total = basketTotal;
+    decrementQuantity: (state, action) => {
+      const basketIdx = action.payload;
+      const item = state.items.find((item) => item.basketIdx === basketIdx);
+      if (item) {
+        item.quantity--;
+        item.total = item.price * item.quantity;
+      }
+      state.total = state.items.reduce((total, item) => total + item.total, 0) || 0;
+
+      SecureStore.setItemAsync("basket", JSON.stringify(state.items));
     },
   },
-  extraReducers: {
-    [getBasketItems.fulfilled]: (state, action) => {
-      state.items = JSON.parse(action.payload);
-      state.total = state.items.reduce((total, item) => total + item.total, 0);
-      console.log('the total is', state.total)
-    },
-    [addToBasketItems.fulfilled]: (state, action) => {
-      state.items = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      //Thunk for retrieving basketItems
+      .addCase(getBasketItems.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getBasketItems.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = JSON.parse(action.payload);
+        state.total = state.items.reduce((total, item) => total + item.total, 0) || 0;
+        console.log(state.items);
+      })
+      .addCase(getBasketItems.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        console.log("failed");
+      })
+      .addCase(addToBasketItems.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.total = state.items.reduce((total, item) => total + item.total, 0);
+      });
   },
 });
 

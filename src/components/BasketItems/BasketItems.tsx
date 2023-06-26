@@ -2,9 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
-import { getValueFor } from "../../helperMethods";
 import { basketActions } from "../../store/slices/basketSlice";
-import * as SecureStore from "expo-secure-store";
 import { getBasketItems } from "../../store/slices/basketSlice.js";
 
 const BasketItems = () => {
@@ -14,16 +12,39 @@ const BasketItems = () => {
   const total = useSelector((state) => state.basket.total);
 
   const fetchData = async () => {
-    return dispatch(getBasketItems());
+    try {
+      return dispatch(getBasketItems());
+    } catch (e) {
+      alert(e);
+    }
+  };
+
+  const incrementQty = (id) => {
+    dispatch(basketActions.incrementQuantity(id));
+  };
+  const decrementQty = (id) => {
+    dispatch(basketActions.decrementQuantity(id));
   };
 
   useEffect(() => {
-    console.log(fetchData());
+    try {
+      fetchData();
+    } catch (e) {
+      alert("basket is empty");
+    }
   }, []);
   return (
     <View>
-      {basketItems?.map(({ id, image, name, price, quantity, total }, i) => (
-        <BasketItem key={i} name={name} image={image} price={total} quantity={quantity} />
+      {basketItems?.map(({ basketIdx, id, image, name, price, quantity, total }, i) => (
+        <BasketItem
+          key={i}
+          name={name}
+          image={image}
+          price={total}
+          quantity={quantity}
+          incrementQty={() => incrementQty(basketIdx)}
+          decrementQty={() => decrementQty(basketIdx)}
+        />
       ))}
       {/* <Text>total:{total}</Text> */}
     </View>

@@ -97,16 +97,17 @@ export const IncrementDecrementBtnContainer = styled.View`
   /* border-color: #000; */
 `;
 export const QuantityAndPriceContainer = styled.View`
-  flex-direction: row;
-  margin-top: 17px;
-  align-items: center;
-  justify-content: state-between;
+  /* flex-direction: row; */
+  margin-top: 10px;
+  /* align-items: center; */
+  /* justify-content: state-between; */
   /* background: orange; */
 `;
 export const QuantityContainer = styled.View`
-  margin-left: 70px;
+  margin-left: 10px;
   align-items: center;
   flex-direction: row;
+  margin-top:10px;
   /* justif-self: flex-end; */
 `;
 

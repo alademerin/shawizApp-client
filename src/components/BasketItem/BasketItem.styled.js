@@ -19,20 +19,21 @@ export const RowContainer = styled.View`
 `;
 
 export const DetailsContainer = styled.View`
-  width: 200px;
-  /* background: red; */
+  max-width: 200px;
+  /* background: pink; */
 `;
 
 export const ItemName = styled.Text`
   font-size: 18px;
   color: #421b39;
+  /* background: red; */
   font-weight: bold;
   margin-left: 10px;
 `;
 
 export const Price = styled.Text`
   font-size: 20px;
-  color: #421b39;
+  /* color: #421b39; */
   font-weight: bold;
   margin-left: 10px;
 `;
