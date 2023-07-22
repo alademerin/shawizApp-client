@@ -9,16 +9,22 @@ import {
   OrderStatus,
 } from "./OrderItem.styled";
 
-const OrderItem = () => {
+interface OrderItemProps {
+  orderName: String;
+  orderStatus: String;
+  img: String;
+}
+
+const OrderItem = ({ orderName, orderStatus, img }: OrderItemProps) => {
   return (
     <Container>
-      <Image source={{ uri: "https://picsum.photos/199", width: 100, height: 100 }} />
+      <Image source={{ uri:  img , width: 100, height: 100 }} />
       <OrderDetailsContainer>
         <OrderNumber>052302KT1E</OrderNumber>
         <OrderName numberOfLines={2} ellipsizeMode="center">
-          Single Sausages Extra stuffed and 2 others
+          {orderName}
         </OrderName>
-        <OrderStatus>PENDING</OrderStatus>
+        <OrderStatus>{orderStatus}</OrderStatus>
       </OrderDetailsContainer>
     </Container>
   );

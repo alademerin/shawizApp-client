@@ -13,10 +13,11 @@ const httpLink = createHttpLink({
 
 const authLink = setContext(async (_, { headers }) => {
   const authorization = await SecureStore.getItemAsync("token");
+  const token = JSON.parse(authorization);
   return {
     headers: {
       ...headers,
-      Authorization: `Bearer ${authorization}`,
+      token: `Bearer ${token}`,
     },
   };
 });

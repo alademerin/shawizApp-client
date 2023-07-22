@@ -6,13 +6,48 @@ import { OrderNowButton } from "../../components/Buttons/Buttons";
 import { OrderButtonContainer, PriceContainer, PriceText, TotalText } from "./BasketScreen.styled";
 import { ScrollView } from "react-native-gesture-handler";
 import BasketItems from "../../components/BasketItems/BasketItems";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
+import { authActions } from "../../store/slices/authSclice";
+import { gql, useMutation } from "@apollo/client";
 
 const BasketScreen = () => {
   const total = useSelector((state) => state.basket.total);
+  const orderBy = useSelector((state) => state.auth.user.id);
+  const basketItems = useSelector((state) => state.basket.items);
+  const dispatch = useDispatch();
+  const orderItems = basketItems?.map((basketItem) => {
+    const item = basketItem.id;
+    const quantity = basketItem.quantity;
+    return { item, quantity };
+  });
+
+  console.log("basIds", orderItems);
+
+  const PLACE_ORDER_MUTATION = gql`
+    mutation PlaceOrder($orderBy: ID!, $orderItems: [OrderItemInput!]!) {
+      placeOrder(orderBy: $orderBy, orderItems: $orderItems) {
+        id
+        orderItems {
+          item {
+            name
+            price
+          }
+          quantity
+        }
+        orderStatus
+        orderBy {
+          id
+        }
+      }
+    }
+  `;
+
+  const [placeOrder] = useMutation(PLACE_ORDER_MUTATION);
 
   const orderBtnPressed = async () => {
+    const response = placeOrder({ variables: { orderBy, orderItems } });
+    console.log(response);
     await SecureStore.deleteItemAsync("basket");
   };
 

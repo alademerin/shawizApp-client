@@ -12,7 +12,7 @@ const Header = () => {
       <HeaderContainer>
         <GreetingContainer>
           <GreetingText>Hello, </GreetingText>
-          <HeaderText>{name}</HeaderText>
+          <HeaderText>{name||'bro'}</HeaderText>
         </GreetingContainer>
         <HomeProfilePic />
       </HeaderContainer>

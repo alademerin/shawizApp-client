@@ -35,17 +35,18 @@ const BasketItems = () => {
   }, []);
   return (
     <View>
-      {basketItems?.map(({ basketIdx, id, image, name, price, quantity, total }, i) => (
-        <BasketItem
-          key={i}
-          name={name}
-          image={image}
-          price={total}
-          quantity={quantity}
-          incrementQty={() => incrementQty(basketIdx)}
-          decrementQty={() => decrementQty(basketIdx)}
-        />
-      ))}
+      {basketItems &&
+        basketItems.map(({ basketIdx, id, image, name, price, quantity, total }, i) => (
+          <BasketItem
+            key={i}
+            name={name}
+            image={image}
+            price={total}
+            quantity={quantity}
+            incrementQty={() => incrementQty(basketIdx)}
+            decrementQty={() => decrementQty(basketIdx)}
+          />
+        ))}
       {/* <Text>total:{total}</Text> */}
     </View>
   );

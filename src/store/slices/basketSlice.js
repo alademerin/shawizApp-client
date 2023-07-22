@@ -61,6 +61,10 @@ const basketSlice = createSlice({
 
       SecureStore.setItemAsync("basket", JSON.stringify(state.items));
     },
+    clearBasket: (state, action) => {
+      state.items = [];
+      SecureStore.deleteItemAsync("basket");
+    },
   },
   extraReducers: (builder) => {
     builder

@@ -105,6 +105,7 @@ const LoginScreen = () => {
               paddingBottom: 20,
             }}
           >
+{/* <Button title="reset" onClick={()=>{SecureStore.deleteItemAsync("token")}}/> */}
             <TinyText>
               Don't have an account? <Bold>Sign Up</Bold>
             </TinyText>

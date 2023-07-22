@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import Title from "../../components/Title/Title";
 import { SafeAreaView } from "react-native-safe-area-context";
+import OrderItems from "../../components/OrderItems/OrderItems";
 import OrderItem from "../../components/OrderItem/OrderItem";
 
 const OrderScreen = () => {
@@ -9,9 +10,7 @@ const OrderScreen = () => {
     <SafeAreaView>
       <View style={{ marginTop: 30 }}>
         <Title title="Orders" underline="100px" />
-        <OrderItem/> 
-        <OrderItem/> 
-        <OrderItem/> 
+        <OrderItems />
       </View>
     </SafeAreaView>
   );
