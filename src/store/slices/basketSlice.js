@@ -63,6 +63,7 @@ const basketSlice = createSlice({
     },
     clearBasket: (state, action) => {
       state.items = [];
+      state.total=0
       SecureStore.deleteItemAsync("basket");
     },
   },

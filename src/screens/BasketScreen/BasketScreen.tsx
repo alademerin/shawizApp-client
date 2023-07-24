@@ -9,7 +9,9 @@ import BasketItems from "../../components/BasketItems/BasketItems";
 import { useDispatch, useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
 import { authActions } from "../../store/slices/authSclice";
+import { basketActions } from "../../store/slices/basketSlice";
 import { gql, useMutation } from "@apollo/client";
+import Toast from "react-native-toast-message";
 
 const BasketScreen = () => {
   const total = useSelector((state) => state.basket.total);
@@ -21,8 +23,6 @@ const BasketScreen = () => {
     const quantity = basketItem.quantity;
     return { item, quantity };
   });
-
-  console.log("basIds", orderItems);
 
   const PLACE_ORDER_MUTATION = gql`
     mutation PlaceOrder($orderBy: ID!, $orderItems: [OrderItemInput!]!) {
@@ -46,9 +46,19 @@ const BasketScreen = () => {
   const [placeOrder] = useMutation(PLACE_ORDER_MUTATION);
 
   const orderBtnPressed = async () => {
-    const response = placeOrder({ variables: { orderBy, orderItems } });
-    console.log(response);
-    await SecureStore.deleteItemAsync("basket");
+    console.log(basketItems.length);
+    if (basketItems.length > 0) {
+      const response = placeOrder({ variables: { orderBy, orderItems } });
+      console.log(response);
+      dispatch(basketActions.clearBasket());
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Order Placed",
+        text2: "payment gateway would be implemented shortly lol",
+      });
+    }
+    // await SecureStore.deleteItemAsync("basket");
   };
 
   return (
