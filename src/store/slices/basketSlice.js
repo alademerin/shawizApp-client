@@ -61,9 +61,20 @@ const basketSlice = createSlice({
 
       SecureStore.setItemAsync("basket", JSON.stringify(state.items));
     },
+    deleteItem: (state, action) => {
+      const basketIdx = action.payload;
+
+      const indexToDelete = state.items.findIndex((item) => item.basketIdx === basketIdx);
+      if (indexToDelete !== -1) {
+        state.items.splice(indexToDelete, 1);
+        state.total = state.items.reduce((total, item) => total + item.total, 0) || 0;
+
+        SecureStore.setItemAsync("basket", JSON.stringify(state.items));
+      }
+    },
     clearBasket: (state, action) => {
       state.items = [];
-      state.total=0
+      state.total = 0;
       SecureStore.deleteItemAsync("basket");
     },
   },

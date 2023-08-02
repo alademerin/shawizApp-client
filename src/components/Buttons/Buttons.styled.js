@@ -85,8 +85,8 @@ export const BasketButtonContainer = styled.View`
 `;
 
 export const IncrementDecrementBtnContainer = styled.View`
-  background: #421b39;
-  opacity: 0.5;
+  background: ${({ bg }) => bg};
+  opacity: 0.8;
   width: 30px;
   height: 30px;
   align-items: center;
@@ -137,7 +137,8 @@ export const OrderBtnIconContainer = styled.View`
 `;
 
 export const AuthButtonContainer = styled.View`
-  background: #421b39;
+  flex-direction: row;
+  background: ${({ disabled }) => (disabled ? "#b1b1b1" : "#421b39")};
   margin-horizontal: 20px;
   height: 50px;
   align-items: center;
@@ -149,4 +150,5 @@ export const AuthButtonText = styled.Text`
   color: #fff;
   font-size: 20px;
   font-weight: bold;
+  /* margin-right: 20px; */
 `;

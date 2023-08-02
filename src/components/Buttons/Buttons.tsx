@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import {
   AddtoBasketButtonContainer,
@@ -77,11 +77,11 @@ export const AddToBasketButton = ({
   );
 };
 
-export const PlusMinusButton = ({ plusMinusPressed , icon}) => {
+export const PlusMinusButton = ({ plusMinusPressed, icon, bg }) => {
   return (
     <TouchableScale activeScale={0.95} onPress={plusMinusPressed}>
-      <IncrementDecrementBtnContainer>
-        <AntDesign name={icon } size={24} color="#fff" />
+      <IncrementDecrementBtnContainer bg={bg || "#421b39"}>
+        <AntDesign name={icon} size={24} color="#fff" />
       </IncrementDecrementBtnContainer>
     </TouchableScale>
   );
@@ -100,11 +100,12 @@ export const OrderNowButton = ({ orderBtnPressed }) => {
   );
 };
 
-export const AuthButton = ({ title, authPressed }) => {
+export const AuthButton = ({ title, authPressed, isLoading, disabled }) => {
   return (
-    <TouchableScale activeScale={0.95} onPress={authPressed}>
-      <AuthButtonContainer>
+    <TouchableScale activeScale={0.95} onPress={authPressed} disabled={disabled}>
+      <AuthButtonContainer disabled={disabled}>
         <AuthButtonText>{title}</AuthButtonText>
+        {isLoading && <ActivityIndicator />}
       </AuthButtonContainer>
     </TouchableScale>
   );

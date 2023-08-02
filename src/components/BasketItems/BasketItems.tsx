@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 // import BasketItem from "../BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +25,15 @@ const BasketItems = () => {
   const decrementQty = (id) => {
     dispatch(basketActions.decrementQuantity(id));
   };
+  const removeItem = (id) => {
+    Alert.alert("Remove from basket?", "This cannot be undone", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      { text: "OK", style: "destructive", onPress: () => dispatch(basketActions.deleteItem(id)) },
+    ]);
+  };
 
   useEffect(() => {
     try {
@@ -35,7 +44,7 @@ const BasketItems = () => {
   }, []);
   return (
     <View>
-      {basketItems &&
+      {basketItems.length ? (
         basketItems.map(({ basketIdx, id, image, name, price, quantity, total }, i) => (
           <BasketItem
             key={i}
@@ -44,9 +53,14 @@ const BasketItems = () => {
             price={total}
             quantity={quantity}
             incrementQty={() => incrementQty(basketIdx)}
-            decrementQty={() => decrementQty(basketIdx)}
+            decrementQty={() => (quantity > 1 ? decrementQty(basketIdx) : removeItem(basketIdx))}
+            decrementIcon={quantity > 1 ? "minus" : "delete"}
+            decrementBg={quantity > 1 ? "#421b39" : "red"}
           />
-        ))}
+        ))
+      ) : (
+        <Text style={{marginHorizontal:20}}>Basket Empty</Text>
+      )}
       {/* <Text>total:{total}</Text> */}
     </View>
   );

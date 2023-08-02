@@ -9,7 +9,7 @@ import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import BasketScreen from "../screens/BasketScreen/BasketScreen";
 import FavouritesScreen from "../screens/FavouritesScreen/FavouritesScreen";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
-
+import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 
 const HomeStack = () => {
   return (

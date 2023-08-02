@@ -12,6 +12,7 @@ import { authActions } from "../../store/slices/authSclice";
 import { basketActions } from "../../store/slices/basketSlice";
 import { gql, useMutation } from "@apollo/client";
 import Toast from "react-native-toast-message";
+import { GET_USER_ORDERS } from "../../components/OrderItems/OrderItems.tsx";
 
 const BasketScreen = () => {
   const total = useSelector((state) => state.basket.total);
@@ -43,7 +44,26 @@ const BasketScreen = () => {
     }
   `;
 
-  const [placeOrder] = useMutation(PLACE_ORDER_MUTATION);
+  const [placeOrder] = useMutation(PLACE_ORDER_MUTATION, {
+    update(cache, { data: { placeOrder } }) {
+      // Fetch the current cache data for the GET_USER_ORDERS query
+      const { getUserOrders } = cache.readQuery({
+        query: GET_USER_ORDERS,
+        variables: { user: orderBy },
+      });
+
+      //update the cache with the new OrderData
+
+      cache.writeQuery({
+        query: GET_USER_ORDERS,
+        variables: { user: orderBy },
+        returnPartialData: true,
+        data: {
+          getUserOrders: [placeOrder, ...getUserOrders],
+        },
+      });
+    },
+  });
 
   const orderBtnPressed = async () => {
     console.log(basketItems.length);

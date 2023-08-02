@@ -37,6 +37,7 @@ const LoginScreen = () => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [getUser, { loading, data, error }] = useLazyQuery(LOGIN, {
     onCompleted: async (data) => {
@@ -52,6 +53,7 @@ const LoginScreen = () => {
     },
     onError: () => {
       console.log(error.title);
+      setIsLoading(false);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -61,6 +63,7 @@ const LoginScreen = () => {
     },
   });
   const loginUser = () => {
+    setIsLoading(true);
     getUser({ variables: { userName, password } });
   };
 
@@ -105,11 +108,16 @@ const LoginScreen = () => {
               paddingBottom: 20,
             }}
           >
-{/* <Button title="reset" onClick={()=>{SecureStore.deleteItemAsync("token")}}/> */}
+            {/* <Button title="reset" onClick={()=>{SecureStore.deleteItemAsync("token")}}/> */}
             <TinyText>
               Don't have an account? <Bold>Sign Up</Bold>
             </TinyText>
-            <AuthButton title="Sign In" authPressed={() => loginUser()} />
+            <AuthButton
+              disabled={userName && password ? false : true}
+              isLoading={isLoading}
+              title={!isLoading && "Sign In"}
+              authPressed={() => loginUser()}
+            />
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>

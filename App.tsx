@@ -20,7 +20,7 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
 const wsLink = new WebSocketLink(
-  new SubscriptionClient("ws://172.20.10.3:5000/graphql", {
+  new SubscriptionClient("ws://172.20.10.3:5000/subscriptions", {
     connectionParams: {
       token: async () => await SecureStore.getItemAsync("token"),
     },

@@ -17,9 +17,21 @@ interface Props {
   price: Number;
   quantity: Number;
   image: String;
+  decrementIcon: String;
+  decrementBg:String
 }
 
-const BasketItem = ({ name, price, quantity, image, incrementQty, decrementQty }: Props) => {
+const BasketItem = ({
+  name,
+  price,
+  quantity,
+  image,
+  incrementQty,
+  decrementQty,
+  decrementIcon,
+  iconColor,
+  decrementBg,
+}: Props) => {
   return (
     <Container>
       <RowContainer>
@@ -30,7 +42,12 @@ const BasketItem = ({ name, price, quantity, image, incrementQty, decrementQty }
           </ItemName>
           <QuantityAndPriceContainer>
             <QuantityContainer>
-              <PlusMinusButton icon="minus" plusMinusPressed={decrementQty} />
+              <PlusMinusButton
+                icon={decrementIcon}
+                plusMinusPressed={decrementQty}
+                iconColor={iconColor}
+                bg={decrementBg}
+              />
               <Quantity>{quantity}</Quantity>
               <PlusMinusButton icon="plus" plusMinusPressed={incrementQty} />
             </QuantityContainer>
